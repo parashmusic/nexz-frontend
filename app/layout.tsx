@@ -33,7 +33,7 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: 'Nexz - Level up your Investment',
-  description: '',
+  description: 'Your financial future starts here',
 };
 
 export default function RootLayout({
