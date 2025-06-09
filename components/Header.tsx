@@ -30,7 +30,7 @@ const Header = () => {
       hasDropdown: true,
       items: ['Business accounts', 'Corporate cards', 'Expense management', 'Payroll']
     },
-    { name: 'nexz <18', hasDropdown: false },
+    { name: 'About', hasDropdown: false },
     { name: 'Help', hasDropdown: false },
   ];
 

@@ -24,7 +24,7 @@ export default function Home() {
         <ProductShowcase />
         <GlobalSection />
         <SecuritySection />
-        <BusinessSection />
+        {/* <BusinessSection /> */}
         <Footer />
       </Suspense>
     </div>
