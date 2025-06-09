@@ -326,7 +326,7 @@ const InteractivePhone = () => {
       />
 
       {/* Interactive glow effect */}
-      <motion.div
+      {/* <motion.div
         className="absolute inset-0 rounded-[3rem] pointer-events-none"
         animate={{
           boxShadow: isHovered 
@@ -334,7 +334,7 @@ const InteractivePhone = () => {
             : '0 0 50px rgba(0, 0, 0, 0.3)'
         }}
         transition={{ duration: 0.5 }}
-      />
+      /> */}
     </motion.div>
   );
 };
