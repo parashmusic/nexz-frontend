@@ -1,23 +1,22 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, AlignRight } from 'lucide-react';
+import { X, ChevronDown, AlignRight } from 'lucide-react';
 import Image from 'next/image';
-import logo from '../assets/logo_nexz.png'
+import logo from '../assets/logo_nexz.png';
+
+const SCROLL_THRESHOLD = 10; // Pixels to scroll before hiding
+const SCROLL_UP_THRESHOLD = 10; // Minimum pixels scrolled up to show navbar
+const HIDE_DELAY = 300; // Delay before hiding (ms)
+
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const [visible, setVisible] = useState(true);
+  const lastScrollY = useRef(0);
+  const hideTimeout = useRef<NodeJS.Timeout>();
 
   const navItems = [
     { 
@@ -34,14 +33,53 @@ const Header = () => {
     { name: 'Help', hasDropdown: false },
   ];
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Always show when at top of page
+      if (currentScrollY <= 20) {
+        setIsScrolled(false);
+        setVisible(true);
+        clearTimeout(hideTimeout.current);
+        lastScrollY.current = currentScrollY;
+        return;
+      }
+      
+      setIsScrolled(currentScrollY > 20);
+      
+      // Hide when scrolling down past threshold
+      if (currentScrollY > lastScrollY.current && currentScrollY > SCROLL_THRESHOLD) {
+        clearTimeout(hideTimeout.current);
+        hideTimeout.current = setTimeout(() => setVisible(false), HIDE_DELAY);
+      } 
+      // Show when scrolling up past threshold
+      else if (lastScrollY.current - currentScrollY > SCROLL_UP_THRESHOLD) {
+        clearTimeout(hideTimeout.current);
+        setVisible(true);
+      }
+      
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(hideTimeout.current);
+    };
+  }, []);
+
   return (
     <motion.header
       initial={{ y: -100 }}
-      animate={{ y: 0 }}
+      animate={{ 
+        y: visible ? 0 : -100,
+        transition: { duration: 0.3 }
+      }}
       transition={{ duration: 0.8, ease: [0.6, 0.01, 0.05, 0.95] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
         isScrolled
-          ? "bg-black/90 backdrop-blur-xl border-b border-white/5"
+          ? "bg-black/90 backdrop-blur-xl  border-white/5"
           : "bg-transparent"
       }`}
     >
@@ -53,16 +91,16 @@ const Header = () => {
             whileTap={{ scale: 0.95 }}
             className="flex-shrink-0 z-50 flex items-center space-x-2"
           >
-            
             <div className="relative w-5 h-5">
               <Image
                 src={logo}
                 alt="Nexz Logo"
                 fill
                 className="object-contain"
+                priority
               />
             </div>
-            <span className="text-2xl  font-bold text-white tracking-tight">
+            <span className="text-2xl font-bold text-white tracking-tight">
               Nexz
             </span>
           </motion.div>
@@ -149,6 +187,7 @@ const Header = () => {
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="text-white p-2 z-50 relative"
+              aria-label="Toggle menu"
             >
               <AnimatePresence mode="wait">
                 {isMobileMenuOpen ? (

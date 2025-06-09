@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ArrowUpRight, TrendingUp, CreditCard, Send, Plus, Eye, EyeOff } from 'lucide-react';
-
+import Image from 'next/image';
+import logo from '../assets/logo_nexz.png';
 const InteractivePhone = () => {
   const phoneRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
@@ -155,6 +156,24 @@ const InteractivePhone = () => {
               className="text-center mb-8"
              
             >
+                <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="flex-shrink-0 z-50 flex items-center justify-center mb-4 space-x-2"
+          >
+            <div className="relative w-5 h-5">
+              <Image
+                src={logo}
+                alt="Nexz Logo"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+            <span className="text-2xl font-bold text-white tracking-tight">
+              Nexz
+            </span>
+          </motion.div>
               <motion.div 
                 className="text-sm text-white/60 mb-2"
              
@@ -211,8 +230,8 @@ const InteractivePhone = () => {
               </motion.div>
               
               {[
-                { name: 'Salary', time: 'Today, 11:28', amount: '+£2,550', color: 'from-green-400 to-green-600', icon: '💰' },
-                { name: 'Coffee Shop', time: 'Yesterday, 14:32', amount: '-£4.50', color: 'from-orange-400 to-orange-600', icon: '☕' },
+                { name: 'ETH', time: 'Today, 11:28', amount: '+£2,550', color: 'from-green-400 to-green-600', icon: '💰' },
+                { name: 'BTC', time: 'Yesterday, 14:32', amount: '-£4.50', color: 'from-orange-400 to-orange-600', icon: '☕' },
                 { name: 'Uber', time: 'Yesterday, 09:15', amount: '-£12.30', color: 'from-purple-400 to-purple-600', icon: '🚗' }
               ].map((transaction, index) => (
                 <motion.div

@@ -101,7 +101,9 @@ const Hero = () => {
     >
       {/* Dynamic gradient background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-500 to-purple-600" />
+        {/* <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-500 to-purple-600" /> */}
+                <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/50" />
+
         <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
         <motion.div
           animate={{
@@ -123,13 +125,12 @@ const Hero = () => {
             <motion.h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-[0.9] tracking-tight">
               <div className="hero-text-line">CHANGE</div>
               <div className="hero-text-line">THE WAY</div>
-              <div className="hero-text-line">YOU MONEY</div>
+              <div className="hero-text-line">YOU INVEST</div>
             </motion.h1>
           </div>
 
           <motion.p className="hero-subtitle text-lg sm:text-xl lg:text-2xl text-white/90 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-            Home or away, local or global — move freely between countries and currencies. 
-            Sign up for free, in a tap.
+            Home or away, local or global — level up, Stack up, Nexz Your Invesment
           </motion.p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">

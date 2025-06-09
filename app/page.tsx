@@ -17,7 +17,7 @@ export default function Home() {
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
       <Suspense fallback={<div className="h-screen bg-black" />}>
         <ParticleBackground />
-        <ScrollProgress />
+        {/* <ScrollProgress /> */}
         <Header />
         <Hero />
         <Features />
