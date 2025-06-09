@@ -5,8 +5,9 @@ import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight, Play } from 'lucide-react';
-import PhoneCard from './PhoneCard';
+import InteractivePhone from './InteractivePhone';
 import FloatingCards from './FloatingCards';
+import { useRouter } from 'next/navigation';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -14,6 +15,8 @@ if (typeof window !== 'undefined') {
 
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start'],
@@ -86,6 +89,10 @@ const Hero = () => {
     return () => ctx.revert();
   }, []);
 
+  const handleGetStarted = () => {
+    router.push('/signup');
+  };
+
   return (
     <motion.section
       ref={heroRef}
@@ -114,18 +121,20 @@ const Hero = () => {
         <div className="text-center lg:text-left space-y-8">
           <div className="space-y-4 overflow-hidden">
             <motion.h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-[0.9] tracking-tight">
-              <div className="hero-text-line">LEVEL UP</div>
+              <div className="hero-text-line">CHANGE</div>
               <div className="hero-text-line">THE WAY</div>
-              <div className="hero-text-line">YOU INVEST</div>
+              <div className="hero-text-line">YOU MONEY</div>
             </motion.h1>
           </div>
 
           <motion.p className="hero-subtitle text-lg sm:text-xl lg:text-2xl text-white/90 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-            Home or away, local or global — Level up, Stack up, <span className=''>Nexz</span> your Investment
+            Home or away, local or global — move freely between countries and currencies. 
+            Sign up for free, in a tap.
           </motion.p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <motion.button
+              onClick={handleGetStarted}
               className="hero-cta group bg-white text-black px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-gray-100 flex items-center justify-center space-x-2"
               whileHover={{ 
                 scale: 1.05,
@@ -133,7 +142,7 @@ const Hero = () => {
               }}
               whileTap={{ scale: 0.95 }}
             >
-              <span>Download the app</span>
+              <span>Get started</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
             </motion.button>
 
@@ -168,10 +177,10 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Right content - Phone mockup and floating cards */}
+        {/* Right content - Interactive Phone and floating cards */}
         <div className="relative flex justify-center lg:justify-end">
           <div className="relative">
-            <PhoneCard />
+            <InteractivePhone />
             <FloatingCards />
           </div>
         </div>
