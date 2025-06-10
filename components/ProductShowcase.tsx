@@ -5,7 +5,8 @@ import { motion, useInView, AnimatePresence } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ChevronLeft, ChevronRight, Play } from 'lucide-react';
-
+import Image from 'next/image';
+import logo from '../assets/phone.png';
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -18,7 +19,7 @@ const products = [
     description: 'Current accounts, savings, budgeting tools, and instant notifications. Banking made simple.',
     image: 'https://www.krea.ai/api/img?f=webp&i=https%3A%2F%2Ftest1-emgndhaqd0c9h2db.a01.azurefd.net%2Fimages%2F442e5625-d997-4e42-ab81-29dfdb142715.png',
     features: ['Instant payments', 'Smart budgeting', 'Real-time notifications', 'Fee-free abroad'],
-    color: 'from-blue-500 to-sky-600',
+    color: 'from-purple-500 to-sky-800',
   },
   {
     id: 2,
