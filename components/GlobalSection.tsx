@@ -5,7 +5,8 @@ import { motion, useInView } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Globe, MapPin, Users, TrendingUp } from 'lucide-react';
-
+import Image from 'next/image';
+import logo from '../assets/phone.png';
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -120,13 +121,14 @@ const GlobalSection = () => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 1, delay: 0.5 }}
-          className="relative bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl p-12 text-center"
+          className="relative  backdrop-blur-lg  rounded-3xl text-center"
         >
           <div className="relative">
-            <img
-              src="https://images.pexels.com/photos/355952/pexels-photo-355952.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            <Image
+              src={logo}
               alt="Global network"
-              className="w-full h-64 lg:h-96 object-cover rounded-2xl opacity-60"
+              className="w-full h-[32rem] lg:opacity-50 lg:h-96 object-cover rounded-2xl opacity-60"
+              fill={false}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-2xl" />
             

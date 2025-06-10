@@ -133,10 +133,10 @@ const Hero = () => {
             Home or away, local or global — level up, Stack up, Nexz Your Invesment
           </motion.p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+          <div className="flex flex-row sm:flex-row gap-4 justify-center lg:justify-start">
             <motion.button
               onClick={handleGetStarted}
-              className="hero-cta group bg-white text-black px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-gray-100 flex items-center justify-center space-x-2"
+              className="hero-cta group bg-white text-black px-4 lg:px-8 lg:py-4 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-gray-100 flex items-center justify-center space-x-2"
               whileHover={{ 
                 scale: 1.05,
                 boxShadow: '0 20px 40px rgba(255, 255, 255, 0.2)'
@@ -148,7 +148,7 @@ const Hero = () => {
             </motion.button>
 
             <motion.button
-              className="hero-cta group border-2 border-white/30 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-white/10 hover:border-white/50 flex items-center justify-center space-x-2"
+              className="hero-cta group border-2 border-white/30 text-white px-4 lg:px-8 lg:py-4 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-white/10 hover:border-white/50 flex items-center justify-center space-x-2"
               whileHover={{ 
                 scale: 1.05,
                 boxShadow: '0 20px 40px rgba(255, 255, 255, 0.1)'
