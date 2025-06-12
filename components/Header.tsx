@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronDown, AlignRight } from 'lucide-react';
 import Image from 'next/image';
 import logo from '../assets/logo_nexz.png';
+import Link from 'next/link';
 
 const SCROLL_THRESHOLD = 10; // Pixels to scroll before hiding
 const SCROLL_UP_THRESHOLD = 10; // Minimum pixels scrolled up to show navbar
@@ -161,24 +162,29 @@ const Header = () => {
 
           {/* Desktop Auth Buttons */}
           <div className="hidden lg:flex items-center space-x-4">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="text-white/80 hover:text-white transition-colors duration-300 text-sm font-medium px-4 py-2"
-            >
-              Log in
-            </motion.button>
-            <motion.button
-              whileHover={{
+            <Link href="/login">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="text-white/80 hover:text-white transition-colors duration-300 text-sm font-medium px-4 py-2"
+              >
+                Log in
+              </motion.button>
+            </Link>
+
+            <Link href="/signup">
+              <motion.button
+                whileHover={{
                 scale: 1.05,
                 boxShadow: "0 20px 40px rgba(6, 102, 235, 0.4)",
                 backgroundColor: "#0666eb",
               }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-white text-black px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 hover:bg-gray-100"
-            >
-              Get started
-            </motion.button>
+                whileTap={{ scale: 0.95 }}
+                className="bg-white text-black px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 hover:bg-gray-100"
+              >
+                Get started
+              </motion.button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -240,7 +246,8 @@ const Header = () => {
                   </motion.a>
                 ))}
                 <div className="pt-4 space-y-3">
-                  <motion.button
+                  <Link href="/login">
+                    <motion.button
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.4 }}
@@ -248,7 +255,9 @@ const Header = () => {
                   >
                     Log in
                   </motion.button>
-                  <motion.button
+                  </Link>
+                  <Link href="/signup">
+                    <motion.button
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.5 }}
@@ -256,6 +265,8 @@ const Header = () => {
                   >
                     Get started
                   </motion.button>
+                  </Link>
+                  
                 </div>
               </div>
             </motion.div>

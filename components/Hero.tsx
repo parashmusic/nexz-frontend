@@ -89,9 +89,9 @@ const Hero = () => {
     return () => ctx.revert();
   }, []);
 
-  const handleGetStarted = () => {
-    router.push('/signup');
-  };
+const handleGetStarted = () => {
+  router.push('/signup');
+};
 
   return (
     <motion.section
